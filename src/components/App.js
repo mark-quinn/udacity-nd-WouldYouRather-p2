@@ -14,7 +14,7 @@ class App extends Component {
       <div>
         {this.props.loading === true ? null : (
           <div>
-            <SignIn />
+            <Home />
           </div>
         )}
       </div>
@@ -22,9 +22,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ authedUser }) {
   return {
-    loading: users === {},
+    loading: authedUser === null,
   };
 }
 

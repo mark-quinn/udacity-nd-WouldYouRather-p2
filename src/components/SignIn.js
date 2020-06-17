@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { render } from "@testing-library/react";
+import { setAuthedUser } from "../actions/authedUser";
 
 class SignIn extends Component {
   state = {
@@ -9,16 +9,28 @@ class SignIn extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Handle sign in", e);
+
+    const { selectedUser } = this.state;
+    const { dispatch } = this.props;
+
+    dispatch(setAuthedUser(selectedUser));
   };
 
   handleChange = (e) => {
-    console.log(e);
+    const name = e.target.value;
+
+    this.setState({
+      selectedUser: name,
+    });
   };
 
   render() {
-    const { users } = this.props;
+    const { users, authedUser } = this.props;
     const { selectedUser } = this.state;
+
+    if (authedUser) {
+      console.log('Redirect to Dashboard');      
+    }
 
     return (
       <div className="container d-flex justify-content-center mt-2">
@@ -43,7 +55,9 @@ class SignIn extends Component {
                   Select User
                 </option>
                 {users.map((user) => (
-                  <option key={user.id} value={user.id}>{user.name}</option>
+                  <option key={user.id} value={user.id}>
+                    {user.name}
+                  </option>
                 ))}
               </select>
               <button className="btn btn-success btn-lg btn-block">
@@ -57,9 +71,10 @@ class SignIn extends Component {
   }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
   return {
     users: Object.values(users).map((user) => user),
+    authedUser,
   };
 }
 

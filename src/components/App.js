@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { handleInitialData } from "../actions/shared";
 import { connect } from "react-redux";
+import { handleInitialData } from "../actions/shared";
 import SignIn from "./SignIn";
 
 class App extends Component {
@@ -11,10 +11,20 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SignIn />
+        {this.props.loading === true ? null : (
+          <div>
+            <SignIn />
+          </div>
+        )}
       </div>
     );
   }
 }
 
-export default connect()(App);
+function mapStateToProps({ users }) {
+  return {
+    loading: users === {},
+  };
+}
+
+export default connect(mapStateToProps)(App);

@@ -29,7 +29,7 @@ class SignIn extends Component {
     const { selectedUser } = this.state;
 
     if (authedUser) {
-      console.log('Redirect to Dashboard');      
+      console.log("Redirect to Dashboard");
     }
 
     return (

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import SignIn from "./SignIn";
 import Home from './Home';
+import PollPage from './PollPage';
 
 class App extends Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class App extends Component {
       <div>
         {this.props.loading === true ? null : (
           <div>
-            <Home />
+            <PollPage id={"8xf0y6ziyjabvozdd253nd"} />
           </div>
         )}
       </div>

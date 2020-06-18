@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Poll from "./Poll";
 
 class Home extends Component {
   state = {
@@ -22,6 +23,11 @@ class Home extends Component {
     const unAnsweredQuestions = answeredQuestions
       .filter((x) => !allQuestions.includes(x))
       .concat(allQuestions.filter((x) => !answeredQuestions.includes(x)));
+
+    const displayQuestionIds =
+      questionSelected === "unanswered"
+        ? unAnsweredQuestions
+        : answeredQuestions;
 
     return (
       <div className="container d-flex justify-content-center mt-2">
@@ -49,7 +55,11 @@ class Home extends Component {
             </div>
           </div>
           <div className="card-body">
-            <p>Display list of questions</p>
+            {displayQuestionIds.map((id) => (
+              <ul key={id}>
+                <Poll id={id} />
+              </ul>
+            ))}
           </div>
         </div>
       </div>

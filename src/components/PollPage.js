@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PollResult from "./PollResult";
 
 class PollPage extends Component {
   state = {
@@ -23,6 +24,9 @@ class PollPage extends Component {
 
     const userAnswered = Object.keys(user.answers).includes(question.id);
 
+    const votes =
+      question.optionOne.votes.length + question.optionTwo.votes.length;
+
     return (
       <div className="card">
         <div className="card-header bg-light">
@@ -30,7 +34,11 @@ class PollPage extends Component {
         </div>
         <div className="card-body">
           {userAnswered ? (
-            <h3 className="font-weight-bold">Results:</h3>
+            <div>
+              <h3 className="font-weight-bold">Results:</h3>
+              <PollResult question={question.optionOne} totalVotes={votes} />
+              <PollResult question={question.optionTwo} totalVotes={votes} />
+            </div>
           ) : (
             <div>
               <p className="font-weight-bold">Would you rather...</p>

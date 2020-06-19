@@ -5,6 +5,7 @@ import SignIn from "./SignIn";
 import Home from './Home';
 import PollPage from './PollPage';
 import NewQuestion from './NewQuestion';
+import Leaderboard from './Leaderboard';
 
 class App extends Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ class App extends Component {
       <div>
         {this.props.loading === true ? null : (
           <div>
-            <NewQuestion />
+            <Leaderboard />
           </div>
         )}
       </div>

@@ -4,6 +4,7 @@ import { handleInitialData } from "../actions/shared";
 import SignIn from "./SignIn";
 import Home from './Home';
 import PollPage from './PollPage';
+import NewQuestion from './NewQuestion';
 
 class App extends Component {
   componentDidMount() {
@@ -15,7 +16,7 @@ class App extends Component {
       <div>
         {this.props.loading === true ? null : (
           <div>
-            <PollPage id={"8xf0y6ziyjabvozdd253nd"} />
+            <NewQuestion />
           </div>
         )}
       </div>

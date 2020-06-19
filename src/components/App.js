@@ -1,11 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import SignIn from "./SignIn";
-import Home from './Home';
-import PollPage from './PollPage';
-import NewQuestion from './NewQuestion';
-import Leaderboard from './Leaderboard';
+import Home from "./Home";
+import PollPage from "./PollPage";
+import NewQuestion from "./NewQuestion";
+import Leaderboard from "./Leaderboard";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import LoadingBar from "react-redux-loading";
+import ProtectedRoute from "./ProtectedRoute";
 
 class App extends Component {
   componentDidMount() {
@@ -14,20 +17,27 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.loading === true ? null : (
+      <Router>
+        <Fragment>
+          <LoadingBar />
           <div>
-            <Leaderboard />
+            {this.props.loading === true ? null : (
+              <div>
+                <Route path="/sign-in" component={SignIn} />
+                <ProtectedRoute path="/" exact component={Home} />
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </Fragment>
+      </Router>
     );
   }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ loadingBar, authedUser }) {
   return {
-    loading: authedUser === null,
+    loading: loadingBar > 0,
+    authedUser,
   };
 }
 

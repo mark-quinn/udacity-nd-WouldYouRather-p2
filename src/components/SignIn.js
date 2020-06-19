@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
+import { withRouter, Redirect } from "react-router-dom";
 
 class SignIn extends Component {
   state = {
@@ -25,11 +26,12 @@ class SignIn extends Component {
   };
 
   render() {
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
     const { users, authedUser } = this.props;
     const { selectedUser } = this.state;
 
     if (authedUser) {
-      console.log("Redirect to Dashboard");
+      return <Redirect to={from} />;
     }
 
     return (
@@ -78,4 +80,4 @@ function mapStateToProps({ users, authedUser }) {
   };
 }
 
-export default connect(mapStateToProps)(SignIn);
+export default withRouter(connect(mapStateToProps)(SignIn));

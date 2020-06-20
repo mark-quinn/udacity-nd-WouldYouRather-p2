@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { handleAddQuestion } from "../actions/questions";
+import { withRouter } from 'react-router-dom';
 
 class NewQuestion extends Component {
   state = {
@@ -13,7 +15,13 @@ class NewQuestion extends Component {
     const { optionOne, optionTwo } = this.state;
 
     if (optionOne && optionTwo) {
-      // TODO: dispatch new question event
+      this.props.dispatch(
+        handleAddQuestion({
+          optionOneText: optionOne,
+          optionTwoText: optionTwo,
+        })
+      );
+      this.props.history.push('/');
     }
   };
 
@@ -71,4 +79,4 @@ function mapStateToProps({ authedUser }) {
   };
 }
 
-export default connect(mapStateToProps)(NewQuestion);
+export default withRouter(connect(mapStateToProps)(NewQuestion));

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PollResult from "./PollResult";
+import { answerPoll } from "../actions/users";
 
 class PollPage extends Component {
   state = {
@@ -15,7 +16,9 @@ class PollPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: dispatch vote
+
+    const { user, question } = this.props;
+    this.props.dispatch(answerPoll(user, question.id));
   };
 
   render() {

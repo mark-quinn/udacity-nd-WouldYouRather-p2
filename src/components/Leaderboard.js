@@ -6,17 +6,19 @@ class Leaderboard extends Component {
     const { userResults } = this.props;
 
     return (
-      <div className="card">
-        <div className="card-body">
-          {userResults.map((user) => (
-            <ul key={user.id}>
-              <h3 className="font-weight-bold">{user.name}</h3>
-              <p>Answered questions: {user.totalAnswered}</p>
-              <p>Created questions: {user.questionsAsked}</p>
-              <p>Score: {user.score}</p>
-            </ul>
-          ))}
-        </div>
+      <div className="container">
+        {userResults.map((user) => (
+          <ul key={user.id}>
+            <div className="card d-flex justify-content-center mt-2 w-50">
+              <div className="card-body">
+                <h3 className="font-weight-bold">{user.name}</h3>
+                <p>Answered questions: {user.totalAnswered}</p>
+                <p>Created questions: {user.questionsAsked}</p>
+                <p>Score: {user.score}</p>
+              </div>
+            </div>
+          </ul>
+        ))}
       </div>
     );
   }

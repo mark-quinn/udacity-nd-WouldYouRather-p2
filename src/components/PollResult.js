@@ -4,15 +4,17 @@ const PollResult = (props) => {
   const { question, totalVotes } = props;
   const text = question.text;
   const votes = question.votes.length;
-  const percentage = votes / totalVotes * 100;
+  const percentage = (votes / totalVotes) * 100;
 
   return (
-    <div>
-      <p>{text}</p>
-      <p>{percentage}%</p>
-      <p>{`${votes} out of ${totalVotes}`}</p>
+    <div className="card">
+      <div className="card-body">
+        <p>Would you rather {text}?</p>
+        <p>{percentage}% voted this choice</p>
+        <p className="font-weight-bold text-center">{`${votes} out of ${totalVotes}`}</p>
+      </div>
     </div>
-  )
+  );
 };
 
 export default PollResult;

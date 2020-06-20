@@ -9,7 +9,7 @@ class Poll extends Component {
     return (
       <div className="card">
         <div className="card-header bg-light">
-          <p className="font-weight-bold">{author.name} asks:</p>
+          <p className="font-weight-bold mb-0">{author.name} asks:</p>
         </div>
         <div className="card-body">
           <p className="font-weight-bold">Would you rather</p>

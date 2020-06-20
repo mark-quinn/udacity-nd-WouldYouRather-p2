@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PollResult from "./PollResult";
-import { handleAnswer } from "../actions/users";
 import { handleSavePollAnswer } from "../actions/shared";
 
 class PollPage extends Component {

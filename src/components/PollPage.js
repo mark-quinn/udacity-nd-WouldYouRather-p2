@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PollResult from "./PollResult";
-import { answerPoll } from "../actions/users";
+import { handleAnswer } from "../actions/users";
+import { handleSavePollAnswer } from "../actions/shared";
 
 class PollPage extends Component {
   state = {
@@ -17,8 +18,8 @@ class PollPage extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { user, question } = this.props;
-    this.props.dispatch(answerPoll(user, question.id));
+    const { question } = this.props;
+    this.props.dispatch(handleSavePollAnswer(question.id, this.state.answer));
   };
 
   render() {
@@ -45,7 +46,7 @@ class PollPage extends Component {
           ) : (
             <div>
               <p className="font-weight-bold">Would you rather...</p>
-              <form>
+              <form onSubmit={this.handleSubmit}>
                 <input
                   type="radio"
                   name="options"
@@ -62,12 +63,7 @@ class PollPage extends Component {
                   onChange={this.handleChange}
                 />
                 {question.optionTwo.text}
-                <button
-                  className="btn btn-success"
-                  onSubmit={this.handleSubmit}
-                >
-                  Submit
-                </button>
+                <button className="btn btn-success">Submit</button>
               </form>
             </div>
           )}
@@ -79,7 +75,7 @@ class PollPage extends Component {
 
 function mapStateToProps({ authedUser, questions, users }, props) {
   const { id } = props.match.params;
-  
+
   const question = questions[id];
   const user = users[authedUser];
   const author = users[question.author];

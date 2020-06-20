@@ -1,5 +1,10 @@
+import { saveQuestionAnswer } from "../utils/api";
+import { showLoading } from 'react-redux-loading';
+import { hideLoading } from 'react-redux-loading';
+
 export const RECEIVE_USERS = "RECEIVE_USERS";
-export const ANSWER_POLL = "ANSWER_POLL";
+export const ADD_ANSWER = "ADD_ANSWER";
+export const SAVE_USER_ANSWER = "SAVE_USER_ANSWER";
 
 export function receiveUsers(users) {
   return {
@@ -8,10 +13,11 @@ export function receiveUsers(users) {
   };
 }
 
-export function answerPoll(userId, questionId) {
+export function saveUserAnswer(authedUser, qid, answer) {
   return {
-    type: ANSWER_POLL,
-    userId,
-    questionId,
+    type: SAVE_USER_ANSWER,
+    authedUser,
+    qid,
+    answer,
   };
 }

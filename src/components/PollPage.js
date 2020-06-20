@@ -74,7 +74,9 @@ class PollPage extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, questions, users }, { id }) {
+function mapStateToProps({ authedUser, questions, users }, props) {
+  const { id } = props.match.params;
+  
   const question = questions[id];
   const user = users[authedUser];
   const author = users[question.author];

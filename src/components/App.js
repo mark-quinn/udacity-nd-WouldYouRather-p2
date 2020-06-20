@@ -9,6 +9,7 @@ import Leaderboard from "./Leaderboard";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoadingBar from "react-redux-loading";
 import ProtectedRoute from "./ProtectedRoute";
+import Nav from './Nav';
 
 class App extends Component {
   componentDidMount() {
@@ -21,10 +22,14 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div>
+            <Nav />
             {this.props.loading === true ? null : (
               <div>
                 <Route path="/sign-in" component={SignIn} />
                 <ProtectedRoute path="/" exact component={Home} />
+                <ProtectedRoute path="/poll/:id" component={PollPage} />
+                <ProtectedRoute path="/leaderboard" component={Leaderboard} />
+                <ProtectedRoute path="/new" component={NewQuestion} />
               </div>
             )}
           </div>

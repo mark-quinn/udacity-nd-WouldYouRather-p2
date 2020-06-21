@@ -40,8 +40,16 @@ class PollPage extends Component {
             {userAnswered ? (
               <div>
                 <h3 className="font-weight-bold">Results:</h3>
-                <PollResult question={question.optionOne} totalVotes={votes} />
-                <PollResult question={question.optionTwo} totalVotes={votes} />
+                <PollResult
+                  question={question.optionOne}
+                  totalVotes={votes}
+                  answered={answer === "optionOne"}
+                />
+                <PollResult
+                  question={question.optionTwo}
+                  totalVotes={votes}
+                  answered={answer === "optionTwo"}
+                />
               </div>
             ) : (
               <div className="d-flex justify-content-between align-items-center">

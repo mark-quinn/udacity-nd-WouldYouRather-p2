@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PollResult from "./PollResult";
 import { handleSavePollAnswer } from "../actions/shared";
+import { Redirect } from "react-router-dom";
 
 class PollPage extends Component {
   state = {
@@ -24,6 +25,10 @@ class PollPage extends Component {
   render() {
     const { user, question, author } = this.props;
     const { answer } = this.state;
+
+    if (question === null) {
+      return <Redirect to="/404" />;
+    }
 
     const userAnswered = Object.keys(user.answers).includes(question.id);
 
@@ -101,6 +106,12 @@ class PollPage extends Component {
 
 function mapStateToProps({ authedUser, questions, users }, props) {
   const { id } = props.match.params;
+
+  if (!Object.keys(questions).includes(id)) {
+    return {
+      question: null,
+    };
+  }
 
   const question = questions[id];
   const user = users[authedUser];

@@ -11,16 +11,12 @@ import NotFound from "./NotFound";
 const Routes = (props) => (
   <div className="container">
     <Switch>
-      {
-        <Fragment>
-          <Route path="/" exact component={SignIn} />
-          <ProtectedRoute path="/home" component={Home} />
-          <ProtectedRoute path="/poll/:id" component={PollPage} />
-          <ProtectedRoute path="/leaderboard" component={Leaderboard} />
-          <ProtectedRoute path="/add" component={NewQuestion} />
-        </Fragment>
-      }
-      {/* <Route component={NotFound} /> */}
+      <Route path="/" exact component={SignIn} />
+      <ProtectedRoute path="/home" component={Home} />
+      <ProtectedRoute path="/poll/:id" component={PollPage} />
+      <ProtectedRoute path="/leaderboard" component={Leaderboard} />
+      <ProtectedRoute path="/add" component={NewQuestion} />
+      <Route path="*" component={NotFound} />
     </Switch>
   </div>
 );

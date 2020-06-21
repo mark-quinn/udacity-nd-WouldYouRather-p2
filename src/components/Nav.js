@@ -8,7 +8,7 @@ class Nav extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.dispatch(removeAuthedUser(this.props.user));
-    this.props.history.push('/sign-in');
+    this.props.history.push('/');
   };
 
   render() {
@@ -30,7 +30,7 @@ class Nav extends Component {
             </li>
             <li className="nav-item">
               <NavLink
-                to="/new"
+                to="/add"
                 exact
                 activeClassName="active"
                 className="nav-link"

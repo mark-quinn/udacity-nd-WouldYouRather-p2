@@ -6,10 +6,10 @@ import Home from "./Home";
 import PollPage from "./PollPage";
 import NewQuestion from "./NewQuestion";
 import Leaderboard from "./Leaderboard";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoadingBar from "react-redux-loading";
-import ProtectedRoute from "./ProtectedRoute";
 import Nav from "./Nav";
+import NotFound from "./NotFound";
 
 class App extends Component {
   componentDidMount() {
@@ -20,19 +20,21 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
+          <Nav />
           <LoadingBar />
-          <div>
-            {this.props.loading === true ? null : (
-              <div>
-                <Nav />
-                <Route path="/sign-in" component={SignIn} />
-                <ProtectedRoute path="/" exact component={Home} />
-                <ProtectedRoute path="/poll/:id" component={PollPage} />
-                <ProtectedRoute path="/leaderboard" component={Leaderboard} />
-                <ProtectedRoute path="/new" component={NewQuestion} />
-              </div>
+          <Switch>
+            {this.props.authedUser === null ? (
+              <Route path="/" exact component={SignIn} />
+            ) : (
+              <Fragment>
+                <Route path="/" exact component={Home} />
+                <Route path="/poll/:id" component={PollPage} />
+                <Route path="/leaderboard" exact component={Leaderboard} />
+                <Route path="/add" exact component={NewQuestion} />
+              </Fragment>
             )}
-          </div>
+            <Route component={NotFound} />
+          </Switch>
         </Fragment>
       </Router>
     );
@@ -41,7 +43,6 @@ class App extends Component {
 
 function mapStateToProps({ loadingBar, authedUser }) {
   return {
-    loading: loadingBar > 0,
     authedUser,
   };
 }

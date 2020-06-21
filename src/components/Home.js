@@ -17,7 +17,7 @@ class Home extends Component {
     const { questionSelected } = this.state;
     const { users, questions, authedUser } = this.props;
     const user = users[authedUser];
-    const allQuestions = Object.keys(questions);
+    const allQuestions = Object.values(questions).map((q) => q.id);
 
     const answeredQuestions = Object.keys(user.answers);
     const unAnsweredQuestions = answeredQuestions
@@ -70,7 +70,7 @@ class Home extends Component {
 function mapStateToProps({ authedUser, questions, users }) {
   return {
     authedUser,
-    questions,
+    questions: Object.values(questions).sort((x, y) => y.timestamp - x.timestamp),
     users,
   };
 }

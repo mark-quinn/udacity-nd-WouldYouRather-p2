@@ -30,6 +30,8 @@ class PollPage extends Component {
     const votes =
       question.optionOne.votes.length + question.optionTwo.votes.length;
 
+    const userAnswer = user.answers[question.id];
+
     return (
       <div className="container d-flex justify-content-around mt-2">
         <div className="card w-50">
@@ -43,12 +45,12 @@ class PollPage extends Component {
                 <PollResult
                   question={question.optionOne}
                   totalVotes={votes}
-                  answered={answer === "optionOne"}
+                  answered={userAnswer === "optionOne"}
                 />
                 <PollResult
                   question={question.optionTwo}
                   totalVotes={votes}
-                  answered={answer === "optionTwo"}
+                  answered={userAnswer === "optionTwo"}
                 />
               </div>
             ) : (

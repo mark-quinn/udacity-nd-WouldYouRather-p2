@@ -10,7 +10,7 @@ const PollResult = (props) => {
     <div className={answered ? "card mb-2 text-white bg-success" : "card mb-2"}>
       <div className="card-body">
         {answered && (
-          <span class="badge badge-warning float-right">You voted this choice!</span>
+          <span className="badge badge-warning float-right">You voted this choice!</span>
         )}
         <p>Would you rather {text}?</p>
         <p>{percentage}% voted this choice</p>

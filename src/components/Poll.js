@@ -15,9 +15,7 @@ class Poll extends Component {
           <p className="font-weight-bold">Would you rather</p>
           <p>...{question.optionOne.text.slice(0, 14)}...</p>
           <Link to={`/poll/${id}`}>
-            <button
-              className="btn btn-block btn-outline-success"
-            >
+            <button className="btn btn-block btn-outline-success">
               View Poll
             </button>
           </Link>

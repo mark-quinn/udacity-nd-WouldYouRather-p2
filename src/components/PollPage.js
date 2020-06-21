@@ -31,7 +31,7 @@ class PollPage extends Component {
       question.optionOne.votes.length + question.optionTwo.votes.length;
 
     return (
-      <div className="container d-flex justify-content-center mt-2">
+      <div className="container d-flex justify-content-around mt-2">
         <div className="card w-50">
           <div className="card-header bg-light">
             <p className="font-weight-bold mb-0">{author.name} asks:</p>
@@ -44,31 +44,42 @@ class PollPage extends Component {
                 <PollResult question={question.optionTwo} totalVotes={votes} />
               </div>
             ) : (
-              <div>
-                <p className="font-weight-bold">Would you rather...</p>
-                <form onSubmit={this.handleSubmit}>
-                  <div className="d-block">
-                    <input
-                      type="radio"
-                      name="options"
-                      value="optionOne"
-                      checked={answer === "optionOne"}
-                      onChange={this.handleChange}
-                    />
-                    <span className="ml-2">{question.optionOne.text}</span>
-                  </div>
-                  <div className="d-block mb-2">
-                    <input
-                      type="radio"
-                      name="options"
-                      value="optionTwo"
-                      checked={answer === "optionTwo"}
-                      onChange={this.handleChange}
-                    />
-                    <span className="ml-2">{question.optionTwo.text}</span>
-                  </div>
-                  <button className="btn btn-success btn-block">Submit</button>
-                </form>
+              <div className="d-flex justify-content-between align-items-center">
+                <div>
+                  <img
+                    src={author.avatarURL}
+                    className="rounded img-fluid"
+                    alt={`Avatar of ${author.name}`}
+                  />
+                </div>
+                <div className="flex-grow-1 ml-5">
+                  <h4 className="font-weight-bold">Would you rather...</h4>
+                  <form onSubmit={this.handleSubmit}>
+                    <div className="d-block">
+                      <input
+                        type="radio"
+                        name="options"
+                        value="optionOne"
+                        checked={answer === "optionOne"}
+                        onChange={this.handleChange}
+                      />
+                      <span className="ml-2">{question.optionOne.text}</span>
+                    </div>
+                    <div className="d-block mb-2">
+                      <input
+                        type="radio"
+                        name="options"
+                        value="optionTwo"
+                        checked={answer === "optionTwo"}
+                        onChange={this.handleChange}
+                      />
+                      <span className="ml-2">{question.optionTwo.text}</span>
+                    </div>
+                    <button className="btn btn-success btn-block">
+                      Submit
+                    </button>
+                  </form>
+                </div>
               </div>
             )}
           </div>

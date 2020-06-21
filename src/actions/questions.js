@@ -23,7 +23,6 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
     const { authedUser } = getState();
 
     dispatch(showLoading);
-
     return saveQuestion({
       optionOneText,
       optionTwoText,

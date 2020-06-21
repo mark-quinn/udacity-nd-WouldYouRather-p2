@@ -171,6 +171,7 @@ export function _saveQuestion(question) {
           questions: users[authedUser].questions.concat([formattedQuestion.id]),
         },
       };
+      console.log("formatted q", formattedQuestion);
 
       res(formattedQuestion);
     }, 1000);
@@ -202,7 +203,7 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
         },
       };
 
-      res(questions[qid]);
+      res();
     }, 500);
   });
 }

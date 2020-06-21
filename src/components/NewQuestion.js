@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleAddQuestion } from "../actions/questions";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 class NewQuestion extends Component {
   state = {
@@ -15,13 +15,8 @@ class NewQuestion extends Component {
     const { optionOne, optionTwo } = this.state;
 
     if (optionOne && optionTwo) {
-      this.props.dispatch(
-        handleAddQuestion({
-          optionOneText: optionOne,
-          optionTwoText: optionTwo,
-        })
-      );
-      this.props.history.push('/');
+      this.props.dispatch(handleAddQuestion(optionOne, optionTwo));
+      this.props.history.push("/");
     }
   };
 

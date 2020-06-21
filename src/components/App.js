@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoadingBar from "react-redux-loading";
 import Nav from "./Nav";
 import NotFound from "./NotFound";
+import ProtectedRoute from './ProtectedRoute';
 
 class App extends Component {
   componentDidMount() {
@@ -33,7 +34,7 @@ class App extends Component {
                 <Route path="/add" exact component={NewQuestion} />
               </Fragment>
             )}
-            <Route component={NotFound} />
+            <ProtectedRoute component={NotFound} />
           </Switch>
         </Fragment>
       </Router>

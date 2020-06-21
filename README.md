@@ -1,3 +1,38 @@
+# Project Title
+
+This is a simple Would You Rather application which is part of Udacity's React nanodegree. This is the final project for the Redux section.
+
+
+## Getting Started
+Clone the project and then run the start up scripts shown below.
+
+### Prerequisites
+
+NPM and Node.js.
+
+### Installing
+
+Clone the project.
+
+```bash
+git clone https://github.com/mark-quinn/udacity-nd-WouldYouRather-p2
+```
+
+Change directory
+```bash
+cd udacity-nd-WouldYouRather-p2
+```
+
+Intall dependencies
+```bash
+npm install
+```
+
+Start development server
+```bash
+npm start
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

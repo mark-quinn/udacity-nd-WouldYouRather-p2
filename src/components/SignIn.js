@@ -26,7 +26,7 @@ class SignIn extends Component {
   };
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { from } = this.props.location.state || { from: { pathname: "/home" } };
     const { users, authedUser } = this.props;
     const { selectedUser } = this.state;
 

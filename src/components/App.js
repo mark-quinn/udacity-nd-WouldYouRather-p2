@@ -10,7 +10,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoadingBar from "react-redux-loading";
 import Nav from "./Nav";
 import NotFound from "./NotFound";
-import ProtectedRoute from './ProtectedRoute';
+import ProtectedRoute from "./ProtectedRoute";
+import Routes from "./Routes";
 
 class App extends Component {
   componentDidMount() {
@@ -23,28 +24,18 @@ class App extends Component {
         <Fragment>
           <Nav />
           <LoadingBar />
-          <Switch>
-            {this.props.authedUser === null ? (
-              <Route path="/" exact component={SignIn} />
-            ) : (
-              <Fragment>
-                <Route path="/" exact component={Home} />
-                <Route path="/poll/:id" component={PollPage} />
-                <Route path="/leaderboard" exact component={Leaderboard} />
-                <Route path="/add" exact component={NewQuestion} />
-              </Fragment>
-            )}
-            <ProtectedRoute component={NotFound} />
-          </Switch>
+          {this.props.loading === true ? null : (
+            <Routes loggedIn={this.props.authedUser} />
+          )}
         </Fragment>
       </Router>
     );
   }
 }
 
-function mapStateToProps({ loadingBar, authedUser }) {
+function mapStateToProps({ users, questions }) {
   return {
-    authedUser,
+    loading: users && questions,
   };
 }
 

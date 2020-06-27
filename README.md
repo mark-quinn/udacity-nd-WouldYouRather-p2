@@ -1,4 +1,4 @@
-# Project Title
+# Udacity - Would you rather
 
 This is a simple Would You Rather application which is part of Udacity's React nanodegree. This is the final project for the Redux section.
 
